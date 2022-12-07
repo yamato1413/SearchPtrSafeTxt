@@ -14,7 +14,9 @@ namespace pst
             // -m オプションがついてる時は大文字小文字を区別する
             bool ignoreCase = !args.Any(x => x == "-m");
             var searchWords = ignoreCase ? args.Where(x => x != "-m").Select(x => x.ToLower()) : args.Where(x => x != "-m");
-            StreamReader pst = new StreamReader("PtrSafe.Txt");
+            
+            string path = Directory.GetParent(Application.ExecutablePath).FullName;
+            StreamReader pst = new StreamReader(path + @"\PtrSafe.Txt");
 
             while (!pst.EndOfStream)
             {
